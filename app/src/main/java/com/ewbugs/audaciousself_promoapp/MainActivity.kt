@@ -1,62 +1,72 @@
 package com.ewbugs.audaciousself_promoapp
 
-import androidx.appcompat.app.AppCompatActivity
+//import android.widget.Toast
+
+import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
-import android.widget.CheckBox
-import android.widget.Spinner
-import android.widget.Toast
-import com.google.android.material.textfield.TextInputEditText
-import kotlinx.android.synthetic.main.activity_main.*
+import android.widget.ArrayAdapter
+import androidx.appcompat.app.AppCompatActivity
+import com.ewbugs.audaciousself_promoapp.databinding.ActivityMainBinding
+
 
 class MainActivity : AppCompatActivity() {
-//    private var contactNameEditText: TextInputEditText? = null
-//    private var contactNumberEditText: TextInputEditText? = null
-//    private var myDisplayNameEditText: TextInputEditText? = null
-//    private var startDateEditText: TextInputEditText? = null
-//    private var juniorCheckBox: CheckBox? = null
-//    private var immediateStartCheckBox: CheckBox? = null
-//    private var jobTitleSpinner: Spinner? = null
-
+    private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-//        contactNameEditText = findViewById(R.id.edit_text_contact_name)
-//        contactNumberEditText = findViewById(R.id.edit_text_contact_number)
-//        myDisplayNameEditText = findViewById(R.id.edit_text_my_display_name)
-//        startDateEditText = findViewById(R.id.edit_text_start_date)
-//        juniorCheckBox = findViewById(R.id.check_box_junior)
-//        immediateStartCheckBox = findViewById(R.id.check_box_immediate_start)
-//        jobTitleSpinner = findViewById(R.id.spinner_job_title)
-//        previewButton: Button = findViewById(R.id.button_preview)
-        button_preview.setOnClickListener {
+
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root) //setContentView(R.layout.activity_main) <-Before Binding was introduced
+        binding.buttonPreview.setOnClickListener {
             onPreviewClicked()
-
-
         }
+        val spinnerValues: Array<String> = arrayOf("Android Developer", "Android Engineer")//{", "}
+        val spinnerAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, spinnerValues)
+        binding.spinnerJobTitle.adapter = spinnerAdapter
     }
 
     private fun onPreviewClicked(){
-        val contactName = edit_text_contact_name.text.toString()
-        val contactNumber = edit_text_contact_number.text.toString()
-        val myDisplayName = edit_text_my_display_name.text.toString()
-        val includeJunior = check_box_junior.isChecked
-        val jobTitle = spinner_job_title.selectedItem.toString()
-        val immediateStart = check_box_immediate_start.isChecked
-        val startDate = edit_text_start_date.text.toString()
-
-        //The regular concatenation is turned into a template like the line below
-        //val testString = "Hardcoded values here: $contactName some more values  $contactNumber"
-
-        val testString = "Contact Name:  $contactName, Contact Number: $contactNumber, My Display Name:, $includeJunior, Job Title: $jobTitle, Immediate Start:, $immediateStart"
 
 
-        Toast.makeText(this, "", Toast.LENGTH_LONG).show()
+        val message = Message(
+            binding.editTextContactName.text.toString(),
+            binding.editTextContactNumber.text.toString(),
+            binding.editTextMyDisplayName.text.toString(),
+            binding.checkBoxJunior.isChecked,
+            binding.spinnerJobTitle.selectedItem?.toString(),
+            binding.checkBoxImmediateStart.isChecked,
+            binding.editTextStartDate.text.toString()
+        )
+
+        //this-from, PreviewActivity-to
+        val previewActivityIntent = Intent(this, PreviewActivity::class.java)//in kt you don't need the word 'new'
+        previewActivityIntent.putExtra("Message", message)//'putExtra' method cannot handle this type of object. You need to use ': Serializable'
+
+        startActivity(previewActivityIntent)
 
 
+//        *** TEST ***
 
+//        val contactName = binding.editTextContactName.text.toString()
+//        val contactNumber = binding.editTextContactNumber.text.toString()
+//        val myDisplayName = binding.editTextMyDisplayName.text.toString()
+//        val includeJunior = binding.checkBoxJunior.isChecked
+//        val jobTitle = binding.spinnerJobTitle.selectedItem?.toString()
+//        val immediateStart = binding.checkBoxImmediateStart.isChecked
+//        val startDate = binding.editTextStartDate.text.toString()
 
+//        previewActivityIntent.putExtra("Contact Name", contactName)
+//        previewActivityIntent.putExtra("Contact Number", contactNumber)
+//        previewActivityIntent.putExtra("My Display Name", myDisplayName)
+//        previewActivityIntent.putExtra("Include Junior", includeJunior)
+//        previewActivityIntent.putExtra("Job Title", jobTitle)
+//        previewActivityIntent.putExtra("Immediate Start", immediateStart)
+//        previewActivityIntent.putExtra("Start Date", startDate)
 
+//        val testString = "$contactName, $contactNumber, $myDisplayName, $includeJunior, $jobTitle, $immediateStart, $startDate"
+//        Toast.makeText(this@MainActivity, testString, Toast.LENGTH_LONG).show()
     }
 }
+
+
+

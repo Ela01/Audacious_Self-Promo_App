@@ -2,7 +2,9 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -14,12 +16,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-
-            android:hint="Contact Name">
+            android:hint="@string/hint_contact_name">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edit_text_contact_name"
-                android:layout_width="match_parent"
+                android:layout_width="320dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:inputType="textCapWords"
@@ -31,17 +32,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-
-            android:hint="Contact Number">
+            android:hint="@string/hint_contact_number">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edit_text_contact_number"
-                android:layout_width="match_parent"
+                android:layout_width="320dp"
                 android:layout_height="wrap_content"
-
                 android:layout_marginTop="8dp"
                 android:inputType="phone"
-
                 tools:text="Example Number" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -50,12 +48,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-
-            android:hint="My Display Name">
+            android:hint="@string/hint_my_display_name">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edit_text_my_display_name"
-                android:layout_width="match_parent"
+                android:layout_width="320dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:inputType="textCapWords"
@@ -65,34 +62,34 @@
 
         <CheckBox
             android:id="@+id/check_box_junior"
-            android:layout_width="match_parent"
+            android:layout_width="320dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="Include 'Junior'" />
+            android:text="@string/text_include_junior" />
 
         <Spinner
             android:id="@+id/spinner_job_title"
-            android:layout_width="match_parent"
+            android:layout_width="320dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             tools:listitem="@android:layout/simple_list_item_1" />
 
         <CheckBox
             android:id="@+id/check_box_immediate_start"
-            android:layout_width="match_parent"
+            android:layout_width="320dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="Immediate Start" />
+            android:text="@string/text_immediate_start" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:hint="Available from date">
+            android:hint="@string/hint_available_from_date">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edit_text_start_date"
-                android:layout_width="match_parent"
+                android:layout_width="320dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:inputType="date"
@@ -103,10 +100,10 @@
         <Button
             android:id="@+id/button_preview"
             style="@style/Widget.AppCompat.Button.Colored"
-            android:layout_width="match_parent"
+            android:layout_width="320dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            android:text="Preview Message" />
+            android:text="@string/text_preview_message" />
 
     </LinearLayout>
 
